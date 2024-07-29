@@ -13,8 +13,7 @@ class RunConfig(BaseModel):
 class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"
     auth: str = "/auth"
-    trips: str = "/trips"
-    google: str = "/auth/google"
+    ad_router: str = "/ad"
 
 
 class ApiPrefix(BaseModel):
@@ -31,14 +30,6 @@ class DatabaseConfig(BaseModel):
     echo_pool: bool = False
     max_overflow: int = 10
     pool_size: int = 50
-    tags: list[str] = [
-        "smoke",
-        "child",
-        "parcels",
-        "with_animals",
-        "max_two",
-        "only_verified",
-    ]
 
     naming_convention: dict[str, str] = {
         "ix": "ix_%(column_0_label)s",

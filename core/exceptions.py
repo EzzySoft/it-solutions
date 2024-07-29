@@ -21,3 +21,8 @@ class EmailInUseError(ValueError):
 class UserNotFoundError(ValueError):
     def __init__(self):
         super().__init__("User not found")
+
+
+class AdNotFoundError(ValueError):
+    def __init__(self):
+        super().__init__("Advertisement not found")

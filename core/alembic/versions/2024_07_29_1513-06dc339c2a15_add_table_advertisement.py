@@ -29,6 +29,52 @@ def upgrade() -> None:
         sa.Column("position_number", sa.Integer(), nullable=True),
         sa.PrimaryKeyConstraint("ad_id", name=op.f("pk_advertisement")),
     )
+
+    ads = [
+        {
+            "title": "Видеонаблюдение Установка Продажа Настройка Видеокамер IP",
+            "author": "TVi MART",
+            "views": 1488,
+            "position_number": 1,
+        },
+        {
+            "title": "Качественная установка монтаж видеонаблюдения на любой объект во Владивостоке",
+            "author": "Primtec",
+            "views": 317,
+            "position_number": 2,
+        },
+        {
+            "title": "ВидеоКИТ - Системы видеонаблюдения, установка, обслуживание во Владивостоке",
+            "author": "VideoKIT",
+            "views": 192,
+            "position_number": 3,
+        },
+        {
+            "title": "Установка камер видеонаблюдения, гарантия лучшей цены во Владивостоке",
+            "author": "Vizord (Визорд)",
+            "views": 523,
+            "position_number": 4,
+        },
+        {
+            "title": "Установим Видеодомофон в квартиру или частный дом! Видеонаблюдение во Владивостоке",
+            "author": "Подряд",
+            "views": 121,
+            "position_number": 5,
+        },
+        {
+            "title": "Установка видеонаблюдения от Vladrec | Монтаж | Обслуживание | СКУД во Владивостоке",
+            "author": "VLADREC",
+            "views": 203,
+            "position_number": 6,
+        },
+    ]
+
+    for ad in ads:
+        op.execute(
+            f"INSERT INTO advertisement (title, author, views, position_number) VALUES "
+            f"('{ad['title']}', '{ad['author']}', {ad['views']}, {ad['position_number']})"
+        )
+
     op.create_index(
         op.f("ix_advertisement_ad_id"),
         "advertisement",
