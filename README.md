@@ -50,3 +50,21 @@ poetry run alembic upgrade head
 Эндпоинты `logout`, `check`, и `ad` требуют наличие HTTP заголовка с `session_id`, получаемого при авторизации
 
 
+### Пример работы
+1. Регистрация и авторизация
+   ![imgs/img_register.png](imgs/img_register.png)
+   Поле `login` может содержать как почту так и username
+
+   ![imgs/img_login.png](imgs/img_login.png)
+
+#### ! На этапе авторизации предполагается что клиент (например браузер) сохранит `session_id` в куки и будет использовать его при дальнейших запросах !
+
+2. Получение всех объявлений
+   ![imgs/img_get_all.png](imgs/img_get_all.png)
+3. Также есть возможность получить конкретное объявление по его id:
+   ![imgs/img_get_one.png](imgs/img_get_one.png)
+
+#### Каждый из запросов обрабатывает исключения, пример исключения при отсутствии sisseion_id в запросе:
+![imgs/img_invalid_session_id.png](imgs/img_invalid_session_id.png)
+
+### Swagger документация доступна по эндпоинту `/api/docs`
