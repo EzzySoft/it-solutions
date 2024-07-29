@@ -15,4 +15,7 @@ alembic = "^1.13.2"
 aioredis = "^2.0.1"
 redis = "^5.0.7"
 black = "^24.4.2"
+pydantic-settings = "^2.3.4"
+bcrypt = "^4.2.0"
+requests = "^2.32.3"
 

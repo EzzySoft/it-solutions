@@ -1,0 +1,45 @@
+services:
+  it_solutions_fastapi_app:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: core/Dockerfile
+    container_name: it_solutions_fastapi_app
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_CONFIG__DATABASE__DB_USER=${APP_CONFIG__DATABASE__DB_USER}
+      - APP_CONFIG__DATABASE__DB_PASSWORD=${APP_CONFIG__DATABASE__DB_PASSWORD}
+      - APP_CONFIG__DATABASE__DB_NAME=${APP_CONFIG__DATABASE__DB_NAME}
+      - APP_CONFIG__DATABASE__DB_HOST=it_solutions_database
+      - APP_CONFIG__REDIS__HOST=it_solutions_redis
+    depends_on:
+      - it_solutions_database
+
+
+  it_solutions_database:
+    env_file:
+      - .env
+    image: postgres:latest
+    restart: always
+    container_name: it_solutions_database
+    environment:
+      POSTGRES_USER: ${APP_CONFIG__DATABASE__DB_USER}
+      POSTGRES_PASSWORD: ${APP_CONFIG__DATABASE__DB_PASSWORD}
+      POSTGRES_DB: ${APP_CONFIG__DATABASE__DB_NAME}
+    ports:
+      - "5433:5432"
+    volumes:
+      - it_solutions_database:/var/lib/postgresql/data
+
+  it_solutions_redis:
+    image: redis:6
+    container_name: it_solutions_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  it_solutions_database:
