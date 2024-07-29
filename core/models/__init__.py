@@ -2,6 +2,7 @@ __all__ = (
     "database_helper",
     "Base",
     "Advertisement",
+    "User"
 )
 
 from .base import Base
