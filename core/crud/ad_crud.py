@@ -17,3 +17,12 @@ async def get(ad_id: int, db: AsyncSession) -> AdvertisementScheme:
         raise AdNotFoundError
 
     return AdvertisementScheme(**ad.__dict__)
+
+
+async def get_all(db: AsyncSession) -> list[AdvertisementScheme]:
+
+    ads = (await db.execute(select(Advertisement))).scalars().all()
+
+    ads_list = [AdvertisementScheme(**ad.__dict__) for ad in ads]
+
+    return ads_list

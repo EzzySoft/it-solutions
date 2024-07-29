@@ -18,3 +18,11 @@ async def get(
     return await ResponseService.response(
         ad_service.get(ad_id=ad_id, request=request, db=db)
     )
+
+
+@router.get("/")
+async def get_all(
+    request: Request,
+    db: AsyncSession = Depends(database_helper.session_getter),
+):
+    return await ResponseService.response(ad_service.get_all(request=request, db=db))
